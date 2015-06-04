@@ -1,3 +1,12 @@
-<br>Here is where you'd normally edit your comment. 
+<h1>Edit Comment</h1>
 
-<%= link_to "back", :back %>
+<%= form_for [@post, @comment] do |f| %>
+    <div>
+        <%= f.label :body, "Edit comment:" %>
+        <%= f.text_area :body %>
+    </div>
+    <br>
+    <%= f.submit "Update your comment!" %>
+<% end %>
+
+<%= link_to "back", post_path(@post) %>

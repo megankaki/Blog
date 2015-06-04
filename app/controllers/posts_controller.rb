@@ -20,9 +20,23 @@ class PostsController < ApplicationController
   	if post.save
   		redirect_to posts_path
   	else 
-  		render :new
+  		render :new_post
   	end
   end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update_attributes(post_params)
+      redirect_to posts_path
+    else 
+      render :edit_post
+    end
+  end
+
   def destroy
     @post = Post.find(params[:id])
     # post.user = current_user

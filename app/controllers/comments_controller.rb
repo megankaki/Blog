@@ -1,17 +1,18 @@
 class CommentsController < ApplicationController
 
 	def edit
+		@post = Post.find(params[:post_id])
 		@comment = Comment.find(params[:id])
-		redirect_to post_path(Post.find(params[:id])) unless @comment.user == current_user
+		redirect_to post_path(@post) unless @comment.user == current_user
 	end
 
 	def update
-		comment = Comment.find(params[:id])
+		@post = Post.find(params[:post_id])
+		@comment = Comment.find(params[:id])
 		if @comment.user == current_user
-			comment.update_attributes(comment_params)
-		else
-			redirect_to posts_path
+			@comment.update_attributes(comment_params)
 		end
+		redirect_to post_path(@post)
 	end
 
 	def create

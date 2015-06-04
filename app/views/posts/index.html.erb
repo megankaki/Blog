@@ -2,9 +2,14 @@
 
 <% @posts.each do |post| %>
 	<%= post.title %> - by <strong><%= post.user.first_name%> <%= post.user.last_name%></strong>
-	<%= link_to 'view', post_path(post)%>
-	<%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+	
+		<%  if current_user == post.user %>
+		<%= link_to 'edit', edit_post_path(post)%>
+		<%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<% end %>
+	<%= link_to 'view', post_path(post)%><br>
 	<%= image_tag post.image.url(:large) %><br><hr>
+	
 
 <% end %>
 
