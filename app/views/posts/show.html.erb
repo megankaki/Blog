@@ -1,2 +1,30 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>This is the post's show page</h1>
+
+<%= @post.title %> - by <strong><%= @post.user.first_name%> <%= @post.user.last_name%></strong><br>
+<%= @post.body %><br>
+<%= image_tag @post.image.url(:large) %><br><hr>
+
+<br>
+
+
+<% @post.comments.each do |comment| %>
+	<%= comment.body %> - posted by <%= comment.user.first_name %>
+	<% if comment.user == current_user %>
+		<%= link_to 'edit', edit_post_comment_path(@post,comment) %>
+        <%= link_to 'delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>        
+	<% end %>
+	<br>
+<% end %>
+
+
+<br>
+<%= form_for [@post, Comment.new] do |f| %>
+    <div>
+        <%= f.label :body, "New comment:" %>
+        <%= f.text_area :body %>
+    </div>
+    <br>
+    <%= f.submit "Add your comment!" %>
+<% end %>
+
+<%= link_to "back", posts_path %>

@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def authorized?
-  	redirect_to root_path unless current_user
+  	redirect_to posts_path unless current_user
   end
 end

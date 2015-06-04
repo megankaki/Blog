@@ -6,17 +6,25 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
 
-  get 'comments/edit'
+  get 'posts/:post_id/comments/:id/edit' => 'comments#edit', as: :edit_post_comment
 
   # get 'comments/update'
+  delete 'posts/:post_id/comments/:id' => 'comments#destroy', as: :post_comment
 
-  # get 'comments/create'
+  post 'posts/:post_id' => 'comments#create'
 
-  get 'posts/index'
+  get 'posts/' => 'posts#index'
+  post 'posts/' => 'posts#create' 
 
-  get 'posts/show'
+  get 'posts/new' => 'posts#new', as: :new_post
 
-  get 'posts/new'
+  get 'posts/:id' => 'posts#show', as: :post
+  get 'posts/:id' => 'comments#show', as: :post_comments
+  delete 'posts/:id' => 'posts#destroy'
+
+ 
+  
+  
 
   # get 'posts/create'
 
