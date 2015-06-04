@@ -1,8 +1,7 @@
 <h1>Users</h1>
-<ul>
+
   <% @users.each do |user| %>
     <%= user.first_name %> <%= user.last_name %>
     <%= link_to 'More info...', user_path(user)%><br>
     <%= image_tag user.image.url(:large) %><hr>
   <% end %>
-</ul>
