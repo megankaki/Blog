@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+<script src="http://maps.googleapis.com/maps/api/js"> </script>
