@@ -1,10 +1,31 @@
 <h1><%= @user.first_name %> <%= @user.last_name%>'s Profile page</h1>
 
 <%= image_tag @user.image.url(:large) %><br>
+<%  if current_user == @user %> 
+	<%= link_to "Edit Profile", edit_user_path(@user) %>
+	<%= link_to "Delete Profile", @user, method: :delete, data: { confirm: 'Are you sure?' }%>	
+<% end %>
 
+
+
+<h2><%= @user.first_name %>'s posts</h2>
 
 <% @user.posts.each do |post| %>
-	<%  if current_user == post.user %>
-	testing 
-	<% end %>
+	<ul>
+		<li>
+			<%= post.title %>
+			<%= link_to 'view', post_path(post)%>
+			<%  if current_user == @user %> 
+				<%= link_to 'edit', edit_post_path(post)%>
+				<%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<% end %>
+		</li>
+	</ul>
+
 <% end %>
+
+<%  if current_user == @user %> 
+	<%= link_to "make a new post", new_post_path %>
+<% end %>
+
+

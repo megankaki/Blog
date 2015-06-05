@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authorized?, except: :index
 
   def index
-  	@posts = Post.all
+  	@posts = Post.all.order("created_at DESC")
   end
 
   def show
@@ -18,7 +18,8 @@ class PostsController < ApplicationController
     post.user = current_user
 
   	if post.save
-  		redirect_to posts_path
+  		# redirect_to user_path(current_user)
+      redirect_to posts_path
   	else 
   		render :new_post
   	end
@@ -39,7 +40,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    # post.user = current_user
     
     @post.destroy
     redirect_to posts_path

@@ -2,7 +2,13 @@
 
 <%= @post.title %> - by <strong><%= @post.user.first_name%> <%= @post.user.last_name%></strong><br>
 <%= @post.body %><br>
-<%= image_tag @post.image.url(:large) %><br><hr>
+<%= image_tag @post.image.url(:large) %><br>
+
+<%  if current_user == @post.user %> 
+    <%= link_to 'edit', edit_post_path(@post)%>
+    <%= link_to 'delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+<% end %>
+<hr>
 
 <br>
 
@@ -27,4 +33,4 @@
     <%= f.submit "Add your comment!" %>
 <% end %>
 
-<%= link_to "back", posts_path %>
+<%= link_to "All Posts", posts_path %>
