@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'posts/:id' => 'posts#show', as: :post
   get 'posts/:id' => 'comments#show', as: :post_comments
   delete 'posts/:id' => 'posts#destroy'
+  root 'sessions#new'
 
  
 
