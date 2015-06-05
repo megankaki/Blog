@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.all.order("created_at DESC")
   end
 
   def new
@@ -12,12 +12,13 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(user_params)
     if @user.save
+      flash[:notice] = "Account successfully created."
       session[:user_id] = @user.id.to_s
       redirect_to users_path
     else
+      flash.now[:error] = "Could not save account. Fill all fields."
       render :new
     end
   end
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
   @user = User.find(params[:id])
 
     if @user.update_attributes(user_params)
+      flash[:notice] = "Account successfully updated."
       redirect_to user_path(@user)
     else 
       render :edit_user
@@ -40,6 +42,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     @user.destroy
+    flash[:notice] = "Account successfully deleted."
     redirect_to users_path
   end
 

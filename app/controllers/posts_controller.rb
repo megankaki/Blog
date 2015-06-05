@@ -18,8 +18,8 @@ class PostsController < ApplicationController
     post.user = current_user
 
   	if post.save
-  		# redirect_to user_path(current_user)
       redirect_to posts_path
+      flash[:notice] = "Post successfully created."
   	else 
   		render :new_post
   	end
@@ -32,6 +32,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update_attributes(post_params)
+      flash[:notice] = "Post successfully updated."
       redirect_to posts_path
     else 
       render :edit_post
@@ -42,6 +43,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     
     @post.destroy
+    flash[:notice] = "Post successfully deleted."
     redirect_to posts_path
   end
 

@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id])
 		if @comment.user == current_user
 			@comment.update_attributes(comment_params)
+			flash[:notice] = "Comment successfully updated."
 		end
 		redirect_to post_path(@post)
 	end
@@ -23,6 +24,7 @@ class CommentsController < ApplicationController
 
 		if comment.save
 			redirect_to post_path(post)
+			flash[:notice] = "Comment successfully created."
 		else
 			render :new
 		end
@@ -34,6 +36,7 @@ class CommentsController < ApplicationController
 
 	if @comment.user == current_user
 		@comment.destroy
+		flash[:notice] = "Comment successfully deleted."
 		redirect_to post_path(@post)
 	else
 		redirect_to post_path
