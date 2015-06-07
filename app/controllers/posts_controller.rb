@@ -14,14 +14,15 @@ class PostsController < ApplicationController
   end
 
   def create
-  	post = Post.new(post_params)
-    post.user = current_user
+  	@post = Post.new(post_params)
+    @post.user = current_user
 
-  	if post.save
-      redirect_to posts_path
+  	if @post.save
       flash[:notice] = "Post successfully created."
+      redirect_to posts_path
   	else 
-  		render :new_post
+      flash.now[:error] = "title and body cannot be blank."
+  		render :new
   	end
   end
 
@@ -35,7 +36,8 @@ class PostsController < ApplicationController
       flash[:notice] = "Post successfully updated."
       redirect_to posts_path
     else 
-      render :edit_post
+      flash.now[:error] = "title and body cannot be blank."
+      render :edit
     end
   end
 
