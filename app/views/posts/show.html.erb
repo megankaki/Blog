@@ -24,7 +24,7 @@
 
 
 <br>
-<%= form_for [@post, Comment.new] do |f| %>
+<%= form_for [@post, @comment] do |f| %>
     <div>
         <%= f.label :body, "New comment:" %>
         <%= f.text_area :body %>

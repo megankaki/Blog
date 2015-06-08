@@ -17,12 +17,12 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		comment = Comment.new(comment_params)
+		@comment = Comment.new(comment_params)
 		post = Post.find(params[:post_id])
-		comment.user = current_user
-		comment.post = post
+		@comment.user = current_user
+		@comment.post = post
 
-		if comment.save
+		if @comment.save
 			redirect_to post_path(post)
 			flash[:notice] = "Comment successfully created."
 		else
