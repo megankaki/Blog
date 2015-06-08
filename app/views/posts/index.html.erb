@@ -1,7 +1,6 @@
 <h1>All the blog posts!</h1>
 
-<%= link_to "make a new post", new_post_path %><br>
-<hr>
+<%= link_to "make a new post", new_post_path %><br><hr>
 <% @posts.each do |post| %>
 	<%= post.title %> - by <strong><%= post.user.first_name%> <%= post.user.last_name%></strong>
 	<%= link_to 'view', post_path(post)%>
@@ -11,9 +10,5 @@
 	<% end %><br>
 	
 	<%= image_tag post.image.url(:large) %><br><hr>
-	
-
 <% end %>
-
-<br>
 

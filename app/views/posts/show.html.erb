@@ -8,9 +8,7 @@
     <%= link_to 'edit', edit_post_path(@post)%>
     <%= link_to 'delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
 <% end %>
-<hr>
-
-<br>
+<hr><br>
 
 
 <% @post.comments.each do |comment| %>
@@ -18,12 +16,9 @@
 	<% if comment.user == current_user %>
 		<%= link_to 'edit', edit_post_comment_path(@post,comment) %>
         <%= link_to 'delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>        
-	<% end %>
-	<br>
-<% end %>
+	<% end %><br>
+<% end %><br>
 
-
-<br>
 <%= form_for [@post, @comment] do |f| %>
     <div>
         <%= f.label :body, "New comment:" %>
