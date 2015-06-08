@@ -5,42 +5,29 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script
-src="http://maps.googleapis.com/maps/api/js">
-</script>
 </head>
 <body>
 
-<script>
-function initialize() {
-  var mapProp = {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+  <strong>
+  	<% flash.each do |key, value| %>
+  	  <%= key %>: <%= value %>
+  	<% end %>
+  </strong><br><hr>
 
-<strong>
-	<% flash.each do |key, value| %>
-	  <%= key %>: <%= value %>
-	<% end %>
-</strong><br><hr>
-<!-- <div id="googleMap" style="width:500px;height:380px;"></div> -->
-<br><hr>
-
-<% if current_user %>
-  <%= link_to 'Home', users_path%> <strong><%= link_to current_user.first_name, user_path(current_user) %></strong> <%= link_to 'Log Out', logout_path, method: :delete %> <%= link_to 'Posts', posts_path%>
+  <% if current_user %>
+    <%= link_to 'Home', users_path%>
+    <strong>
+      <%= link_to current_user.first_name, user_path(current_user) %>
+    </strong>
+    <%= link_to 'Log Out', logout_path, method: :delete %> <%= link_to 'Posts', posts_path%>
 
 
-<% else %>
-  <%= link_to 'Log In', login_path %>
-  <%= link_to 'Sign Up', users_new_path %>
-<% end %>
+  <% else %>
+    <%= link_to 'Log In', login_path %>
+    <%= link_to 'Sign Up', users_new_path %>
+  <% end %>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
