@@ -17,24 +17,24 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 </head>
-<body>
-<div id="address-map" style="width:500px;height:380px;"></div>
-<strong>
-	<% flash.each do |key, value| %>
-	  <%= key %>: <%= value %>
-	<% end %>
-</strong><br><hr>
+  <body>
+    <div id="address-map" style="width:500px;height:380px;"></div>
+    <strong>
+    	<% flash.each do |key, value| %>
+    	  <%= key %>: <%= value %>
+    	<% end %>
+    </strong><br><hr>
 
-<% if current_user %>
-  <%= link_to 'Home', users_path%> <%= link_to current_user.first_name, user_path(current_user) %> <%= link_to 'Log Out', logout_path, method: :delete %> <%= link_to 'Posts', posts_path%>
+    <% if current_user %>
+      <%= link_to 'Home', users_path%> <%= link_to current_user.first_name, user_path(current_user) %> <%= link_to 'Log Out', logout_path, method: :delete %> <%= link_to 'Posts', posts_path%>
 
 
-<% else %>
-  <%= link_to 'Log In', login_path %>
-  <%= link_to 'Sign Up', users_new_path %>
-<% end %>
+    <% else %>
+      <%= link_to 'Log In', login_path %>
+      <%= link_to 'Sign Up', users_new_path %>
+    <% end %>
 
-<%= yield %>
+    <%= yield %>
 
-</body>
+  </body>
 </html>
