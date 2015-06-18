@@ -14,14 +14,15 @@ class PostsController < ApplicationController
   end
 
   def create
-  	post = Post.new(post_params)
-    post.user = current_user
+  	@post = Post.new(post_params)
+    @post.user = current_user
 
-  	if post.save
+  	if @post.save
       redirect_to posts_path
       flash[:notice] = "Post successfully created."
   	else 
-  		render :new_post
+  		flash.now[:error] = "Please fill in all fields."
+      render new_post_path
   	end
   end
 
