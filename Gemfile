@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
 gem 'bootstrap-sass', '~> 3.3.4'
 
+gem 'figaro'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
