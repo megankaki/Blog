@@ -36,7 +36,8 @@ class PostsController < ApplicationController
       flash[:notice] = "Post successfully updated."
       redirect_to posts_path
     else 
-      render :edit_post
+      flash.now[:error] = "Please try again."
+      render edit_post_path
     end
   end
 
