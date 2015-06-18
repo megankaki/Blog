@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id.to_s
       redirect_to users_path
     else
-      flash.now[:error] = "Could not save account. Fill all fields."
+      flash.now[:error] = "Could not save account. Fill in all fields."
       render :new
     end
   end
@@ -34,7 +34,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Account successfully updated."
       redirect_to user_path(@user)
     else 
-      render :edit_user
+      flash.now[:error] = "First name, last name, email, pasword, and password confirmation cannot be blank."
+      render :edit
     end
   end
 

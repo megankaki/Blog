@@ -28,6 +28,12 @@
     <% if current_user %>
       <%= link_to 'Home', users_path%> <%= link_to current_user.first_name, user_path(current_user) %> <%= link_to 'Log Out', logout_path, method: :delete %> <%= link_to 'Posts', posts_path%>
 
+  <% if current_user %>
+    <%= link_to 'Home', users_path%>
+    <strong>
+      <%= link_to current_user.first_name, user_path(current_user) %>
+    </strong>
+    <%= link_to 'Log Out', logout_path, method: :delete %> <%= link_to 'Posts', posts_path%>
 
     <% else %>
       <%= link_to 'Log In', login_path %>

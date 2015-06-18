@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -18,11 +19,11 @@ class PostsController < ApplicationController
     @post.user = current_user
 
   	if @post.save
-      redirect_to posts_path
       flash[:notice] = "Post successfully created."
+      redirect_to posts_path
   	else 
-  		flash.now[:error] = "Please fill in all fields."
-      render new_post_path
+      flash.now[:error] = "title and body cannot be blank."
+  		render :new
   	end
   end
 
@@ -35,9 +36,9 @@ class PostsController < ApplicationController
     if @post.update_attributes(post_params)
       flash[:notice] = "Post successfully updated."
       redirect_to posts_path
-    else 
-      flash.now[:error] = "Please try again."
-      render edit_post_path
+    else
+      flash.now[:error] = "title and body cannot be blank."
+      render :edit
     end
   end
 
