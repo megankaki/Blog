@@ -6,5 +6,4 @@ script: bundle exec rspec
 addons:
   postgresql: "9.3"
 before_script:
-#or rake db:create
   - psql -c 'create database travis_ci_test;' -U postgres
