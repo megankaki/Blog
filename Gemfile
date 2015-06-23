@@ -48,6 +48,7 @@ group :development, :test do
   gem 'spring'
 
  ruby '2.1.5'
+ gem 'rspec-rails'
 
 group :production do
   gem 'rails_12factor'
